@@ -2,7 +2,7 @@ import {useWallet} from "@aptos-labs/wallet-adapter-react";
 import {AptosClient, Types } from "aptos";
 import env from "./env.json";
 import {useEffect, useState} from "react";
-import { ExclamationTriangleIcon } from '@heroicons/react/20/solid'
+import { ExclamationTriangleIcon, LinkIcon } from '@heroicons/react/20/solid'
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from "react-toastify";
 
@@ -19,7 +19,7 @@ enum RegistryName {
 
 export default function RegistrationPage() {
   const client = new AptosClient(env.devnet.rpcUrl);
-  const { account, isLoading, signAndSubmitTransaction } = useWallet();
+  const { account, isLoading, signAndSubmitTransaction, network } = useWallet();
   const [ toSubmitDelegate, submitDelegate ] = useState(false);
   const [ toSubmitVault, submitVault ] = useState(false);
 
@@ -79,8 +79,12 @@ export default function RegistrationPage() {
         const tx = await signAndSubmitTransaction(payload);
         console.log(tx);
         toast.success(
-          `Submitted to Delegate Registry successfully. Transaction hash - ${tx.hash}
-        `)
+          <div className="w-48 justify-center">Submitted to Delegate Registry successfully. Check the transaction hash.
+            <a target='_blank' rel='noopener noreferrer' href={`https://explorer.aptoslabs.com/txn/${tx.hash}?network=${network?.name.toLowerCase()}`}>
+              <LinkIcon className="w-6 h-6"/>
+            </a>
+          </div>
+        );
       } catch (err) {
         console.log(err);
         toast.error('Failed to submit to Delegate Registry');
@@ -96,7 +100,13 @@ export default function RegistrationPage() {
       try {
         const tx = await signAndSubmitTransaction(payload);
         console.log(tx);
-        toast.success(`Submitted to Vault Registry successfully. Transaction Hash - ${tx.hash}`)
+        toast.success(
+          <div className="w-48 justify-center">Submitted to Vault Registry successfully. Check the transaction hash.
+            <a target='_blank' rel='noopener noreferrer' href={`https://explorer.aptoslabs.com/txn/${tx.hash}?network=${network?.name.toLowerCase()}`}>
+              <LinkIcon className="w-6 h-6"/>
+            </a>
+          </div>
+        );
       } catch (err) {
         console.log(err);
         toast.error('Failed to submit to Vault Registry');

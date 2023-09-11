@@ -4,6 +4,7 @@ import {useWallet} from "@aptos-labs/wallet-adapter-react";
 import env from './env.json'
 import {Types} from "aptos";
 import {toast} from "react-toastify";
+import {LinkIcon} from "@heroicons/react/20/solid";
 
 export enum DelegateType {
   DELEGATE_NFT = 'DELEGATE_NFT',
@@ -17,7 +18,7 @@ export default function DelegateInputModal(props: { open: boolean; setOpen: Disp
   const [contractAddress, setContractAddress] = useState('');
   const [tokenId, setTokenId] = useState('');
 
-  const { account, signAndSubmitTransaction } = useWallet();
+  const { account, signAndSubmitTransaction, network } = useWallet();
 
   async function callSendTx(delegateAddress: string): Promise<void> {
     if (!account) throw new Error('account cannot be null');
@@ -30,9 +31,12 @@ export default function DelegateInputModal(props: { open: boolean; setOpen: Disp
     try {
       const tx = await signAndSubmitTransaction(payload);
       toast.success(
-        `Delegated successfully
-          Transaction hash - ${tx.hash}
-        `);
+        <div className="w-48 justify-center">Delegated successfully. Check the transaction hash.
+          <a target='_blank' rel='noopener noreferrer' href={`https://explorer.aptoslabs.com/txn/${tx.hash}?network=${network?.name.toLowerCase()}`}>
+            <LinkIcon className="w-6 h-6"/>
+          </a>
+        </div>
+      );
     } catch (err) {
       console.log(err);
       toast.error('Failed to delegate');
