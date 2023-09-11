@@ -1,10 +1,10 @@
 import {Dispatch, Fragment, useState} from 'react'
 import {Dialog, Transition} from '@headlessui/react'
 import {useWallet} from "@aptos-labs/wallet-adapter-react";
-import env from './env.json'
 import {Types} from "aptos";
 import {toast} from "react-toastify";
 import {LinkIcon} from "@heroicons/react/20/solid";
+import { getContractAddress } from './common/env';
 
 export enum DelegateType {
   DELEGATE_NFT = 'DELEGATE_NFT',
@@ -22,9 +22,12 @@ export default function DelegateInputModal(props: { open: boolean; setOpen: Disp
 
   async function callSendTx(delegateAddress: string): Promise<void> {
     if (!account) throw new Error('account cannot be null');
+    if (!network) throw new Error('network cannot be null');
+
+    let contractAddress = getContractAddress(network.name);
     let payload: Types.TransactionPayload = {
       type: 'entry_function_payload',
-      function: `${env.devnet.contractAddress}::delegate::delegate_for_all`,
+      function: `${contractAddress}::delegate::delegate_for_all`,
       type_arguments: [],
       arguments: [delegateAddress, true]
     }

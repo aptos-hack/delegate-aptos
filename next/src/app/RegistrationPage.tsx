@@ -1,10 +1,10 @@
-import {useWallet} from "@aptos-labs/wallet-adapter-react";
+import {NetworkName, useWallet} from "@aptos-labs/wallet-adapter-react";
 import {AptosClient, Types } from "aptos";
-import env from "./env.json";
 import {useEffect, useState} from "react";
 import { ExclamationTriangleIcon, LinkIcon } from '@heroicons/react/20/solid'
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from "react-toastify";
+import { getContractAddress, getRpcUrl } from "./common/env";
 
 type RegistrationDetailType = {
   id: number;
@@ -18,12 +18,13 @@ enum RegistryName {
 }
 
 export default function RegistrationPage() {
-  const client = new AptosClient(env.devnet.rpcUrl);
   const { account, isLoading, signAndSubmitTransaction, network } = useWallet();
   const [ toSubmitDelegate, submitDelegate ] = useState(false);
   const [ toSubmitVault, submitVault ] = useState(false);
-
   const [ registrationDetail, setRegistrationDetail ] = useState<RegistrationDetailType[]>([]);
+  
+  let contractAddress = getContractAddress(network?.name ?? NetworkName.Devnet); // TODO: change to mainnet once deployed
+  const client = new AptosClient(getRpcUrl(network?.name ?? NetworkName.Devnet));
 
   useEffect(() => {
     getState().then((a) => {
@@ -42,7 +43,7 @@ export default function RegistrationPage() {
       return;
     }
     const vaultRegisteredPayload: Types.ViewRequest = {
-      function: `${env.devnet.contractAddress}::delegate::is_vault_registered`,
+      function: `${contractAddress}::delegate::is_vault_registered`,
       type_arguments: [],
       arguments: [account!.address],
     };
@@ -51,7 +52,7 @@ export default function RegistrationPage() {
     const vaultRegisteredPromise = client.view(vaultRegisteredPayload as Types.ViewRequest);
 
     const delegateRegisteredPayload: Types.ViewRequest = {
-      function: `${env.devnet.contractAddress}::delegate::is_delegate_registered`,
+      function: `${contractAddress}::delegate::is_delegate_registered`,
       type_arguments: [],
       arguments: [account!.address],
     }
@@ -71,7 +72,7 @@ export default function RegistrationPage() {
     if (toSubmitDelegate) {
       let payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${env.devnet.contractAddress}::delegate::register_delegate`,
+        function: `${contractAddress}::delegate::register_delegate`,
         type_arguments: [],
         arguments: []
       }
@@ -93,7 +94,7 @@ export default function RegistrationPage() {
     if (toSubmitVault) {
       let payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${env.devnet.contractAddress}::delegate::register_vault`,
+        function: `${contractAddress}::delegate::register_vault`,
         type_arguments: [],
         arguments: []
       }
