@@ -8,6 +8,7 @@ import DelegatePage from "./DelegatePage";
 import ProgressBar, {StepState} from "./ProgressBar";
 import RegistrationPage from "./RegistrationPage";
 import {ToastContainer} from "react-toastify";
+import ViewPage from "../../../src/app/ViewPage";
 
 export default function Home() {
   const [ wallet, setWallet ] = useState<PetraWallet>(new PetraWallet());
@@ -49,6 +50,8 @@ function renderContentPage(step: StepState): JSX.Element {
       return <RegistrationPage />;
     case 'Delegate':
       return <DelegatePage />;
+    case 'View':
+      return <ViewPage />;
     default:
       throw new Error('Unimplemented');
   }

@@ -1,6 +1,6 @@
 import {Dispatch, useState} from 'react';
 
-export type StepState = 'Delegate' | 'Register'
+export type StepState = 'Delegate' | 'Register' | 'View'
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ');
@@ -9,9 +9,16 @@ function classNames(...classes: string[]): string {
 export default function ProgressBar(props: { step: string; setStep: Dispatch<StepState>; }) {
   const { step, setStep } = props;
 
-  const items = [
+  const items: Array<{
+    id: string;
+    name: string;
+    description: string;
+    href: string;
+    status: 'current' | 'upcoming' | 'complete';
+  }> = [
     { id: '01', name: 'Register', description: 'Submit your address to the Registry', href: '#', status: step === 'Register' ? 'current' : 'upcoming' },
     { id: '02', name: 'Delegate', description: 'Delegate your hot wallet', href: '#', status: step === 'Delegate' ? 'current' : 'upcoming' },
+    { id: '03', name: 'View', description: 'View your delegates', href: '#', status: step === 'View' ? 'current' : 'upcoming' },
   ];
 
   return (

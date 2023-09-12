@@ -1,6 +1,6 @@
 import {Dispatch, useState} from 'react';
 
-export type StepState = 'Delegate' | 'Register'
+export type StepState = 'Delegate' | 'Register' | 'View'
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ');
