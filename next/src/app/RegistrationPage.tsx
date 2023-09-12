@@ -67,8 +67,6 @@ export default function RegistrationPage() {
   }
 
   async function submitToRegistry(): Promise<void> {
-    console.log('toSubmitDelegate', toSubmitDelegate);
-    console.log('toSubmitVault', toSubmitVault);
     if (toSubmitDelegate) {
       let payload: Types.TransactionPayload = {
         type: 'entry_function_payload',

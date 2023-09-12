@@ -33,12 +33,12 @@ const blockExplorerUrl = (address: string) => {
 
 const getDelegationType = (type: number) => {
     switch (type) {
-        case 0:
-            return 'Delegate Wallet';
         case 1:
+            return 'Delegate Wallet';
+        case 2:
             return 'Delegate NFT';
         default:
-            return 'Unknown';
+            return 'Unknown Type';
     }
 }
 
@@ -56,8 +56,6 @@ export default function ViewPage() {
             setDelegationInfo(delegates.delegatesByVaultResult);
         })
     }, [isLoading, account])
-
-    console.log({delegationInfo})
 
     const getDelegatesForVault = async () : Promise<{ delegatesByVaultResult: Array<DelegationInfo>  }> => {
         if (!account) {
@@ -116,6 +114,7 @@ export default function ViewPage() {
                     </th>
                 </tr>
                 </thead>
+                <tbody>
                 {
                     delegationInfo.map((delegate) => {
                        return <tr key={delegate.delegatation_hash}>
@@ -137,6 +136,7 @@ export default function ViewPage() {
                         </tr>
                     })
                 }
+                </tbody>
             </table>
 
             <br />
