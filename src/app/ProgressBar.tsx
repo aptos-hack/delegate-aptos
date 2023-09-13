@@ -1,4 +1,4 @@
-import {Dispatch, useState} from 'react';
+import {Dispatch} from 'react';
 
 export type StepState = 'Delegate' | 'Register' | 'View'
 
@@ -22,7 +22,7 @@ export default function ProgressBar(props: { step: string; setStep: Dispatch<Ste
   ];
 
   return (
-    <div className="lg:border-b lg:border-t lg:border-gray-200">
+    <div className="lg:border-b lg:border-t lg:border-gray-200 mb-12">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
         <ol
           role="list"
@@ -55,7 +55,7 @@ export default function ProgressBar(props: { step: string; setStep: Dispatch<Ste
                         </span>
                       </span>
                       <span className="ml-4 mt-0.5 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-indigo-600">{step.name}</span>
+                        <span className="text-xl font-medium text-indigo-600 mb-1.5">{step.name}</span>
                         <span className="text-sm font-medium text-gray-500">{step.description}</span>
                       </span>
                     </span>
@@ -82,7 +82,7 @@ export default function ProgressBar(props: { step: string; setStep: Dispatch<Ste
                         </span>
                       </span>
                       <span className="ml-4 mt-0.5 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-gray-500">{step.name}</span>
+                        <span className="text-xl font-medium text-indigo-600 mb-1.5">{step.name}</span>
                         <span className="text-sm font-medium text-gray-500">{step.description}</span>
                       </span>
                     </span>

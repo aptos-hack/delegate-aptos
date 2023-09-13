@@ -63,8 +63,8 @@ export function WalletSelector({
       {/*  {connected ? buttonText : "Connect Wallet"}*/}
       {/*</Button>*/}
       <button type="button"
-              className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              onClick={() => onWalletButtonClick()}
+          className="relative rounded-full bg-white p-1 text-gray-700 bg-blue-600 px-3 py-1 text-amber-50 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          onClick={() => onWalletButtonClick()}
       >
         {connected ? buttonText : "Connect Wallet"}
       </button>
