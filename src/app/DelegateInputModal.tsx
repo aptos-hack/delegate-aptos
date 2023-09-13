@@ -27,7 +27,7 @@ export default function DelegateInputModal(props: { open: boolean; setOpen: Disp
     let contractAddress = getContractAddress(network.name);
     let payload: Types.TransactionPayload = {
       type: 'entry_function_payload',
-      function: `${contractAddress}::delegate::delegate_for_all`,
+      function: `${contractAddress}::delegate::delegate_for_wallet`,
       type_arguments: [],
       arguments: [delegateAddress, true]
     }
