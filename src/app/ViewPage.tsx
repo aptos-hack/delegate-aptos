@@ -53,11 +53,13 @@ export default function ViewPage() {
 
     useEffect(() => {
         getDelegatesForVault().then((delegates) => {
-            if (!delegates.delegatesByVaultResult) {
+            if (!delegates?.delegatesByVaultResult) {
                 return;
             }
             setDelegationInfo(delegates.delegatesByVaultResult);
-        })
+        }).catch((err) => {
+            console.log(`Wallet has not yet registered: ${err.toString()}`);
+        });
     }, [isLoading, account])
 
     const getDelegatesForVault = async () : Promise<{ delegatesByVaultResult?: Array<DelegationInfo>  }> => {
