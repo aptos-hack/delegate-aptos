@@ -24,6 +24,7 @@
     "eslint-config-next": "13.4.19",
     "i": "^0.3.7",
     "next": "13.4.19",
+    "next-themes": "^0.2.1",
     "npm": "^10.1.0",
     "petra-plugin-wallet-adapter": "^0.3.0",
     "postcss": "8.4.29",

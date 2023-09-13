@@ -48,7 +48,6 @@ export default function RegistrationPage() {
       arguments: [account!.address],
     };
 
-    console.log(vaultRegisteredPayload);
     const vaultRegisteredPromise = client.view(vaultRegisteredPayload as Types.ViewRequest);
 
     const delegateRegisteredPayload: Types.ViewRequest = {
@@ -127,9 +126,6 @@ export default function RegistrationPage() {
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
                 Login with Petra Wallet.{' '}
-                {/*<a href="#" className="font-medium text-yellow-700 underline hover:text-yellow-600">*/}
-                {/*  Upgrade your account to add more credits.*/}
-                {/*</a>*/}
               </p>
             </div>
           </div>
@@ -195,8 +191,6 @@ export default function RegistrationPage() {
       <div className="mt-5 sm:mt-6 text-center">
         <button
           onClick={async () => {
-            console.log('toSubmitVault', toSubmitVault);
-            console.log('toSubmitDelegate', toSubmitDelegate);
             await submitToRegistry();
           }}
           type="button"

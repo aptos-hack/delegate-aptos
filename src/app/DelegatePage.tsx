@@ -14,7 +14,7 @@ const items = [
   },
   {
     title: 'Delegate a NFT',
-    description: 'Will only delegate a specific token on a specific contract.',
+    description: 'Coming Soon!',
     icon: ViewColumnsIcon,
     background: 'bg-blue-500',
     delegateType: DelegateType.DELEGATE_NFT,
