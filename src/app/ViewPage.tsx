@@ -53,11 +53,14 @@ export default function ViewPage() {
 
     useEffect(() => {
         getDelegatesForVault().then((delegates) => {
+            if (!delegates.delegatesByVaultResult) {
+                return;
+            }
             setDelegationInfo(delegates.delegatesByVaultResult);
         })
     }, [isLoading, account])
 
-    const getDelegatesForVault = async () : Promise<{ delegatesByVaultResult: Array<DelegationInfo>  }> => {
+    const getDelegatesForVault = async () : Promise<{ delegatesByVaultResult?: Array<DelegationInfo>  }> => {
         if (!account) {
             // @ts-ignore
             return;
