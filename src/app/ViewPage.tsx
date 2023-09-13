@@ -98,13 +98,13 @@ export default function ViewPage() {
                 </div>
             )}
             {
-                delegationInfo.length > 0 && <div className="border-l-4 border-yellow-400 bg-yellow-50 p-4 w-full justify-center flex align-center mt-4">
+                delegationInfo.length === 0 && <div className="border-l-4 border-yellow-400 bg-yellow-50 p-4 w-full justify-center flex align-center mt-4">
                     <span className="text-black">
                         No Delegations Found, please register a vault.
                     </span>
                 </div>
             }
-            {delegationInfo.length === 0 && <table className="w-full text-left">
+            {delegationInfo.length > 0 && <table className="w-full text-left">
                 <thead className="bg-white">
                 <tr>
                     <th scope="col"
