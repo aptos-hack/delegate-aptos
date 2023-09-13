@@ -1,15 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
+
+**What is delegate-aptos?**
+
+Being inspired by the success of delegate.xyz, delegate-aptos seeks to solve the same problem but on the Aptos network.
+
+delegate-aptos offers a secure way to protect valuable on-chain assets while enabling users to participate in NFT airdrop claims, token governance, and other activities. It allows users to connect their cold wallets to hot wallets, enabling the hot wallet to perform actions on behalf of the cold wallet.
+
+This solution can be integrated into various processes, such as login flows, token-gated minting and claiming, gaming actions, DAO governance, and more. By incorporating the registry, applications can benefit from (1) reducing risks associated with new user acquisition from those who have already delegated, and (2) providing a safer and more convenient way for existing users to interact with your app using hot or mobile wallets without compromising security.
+
+**Why delegate-aptos exists?**
+Token-gated activites, NFTs and airdrops (not withstanding other activities) are crucial to building communities and growing the Aptos ecosystem. However, safety and security is still
+
+Safety and security is key to user adoption
+We believe that helping users secure their assests while being able to participate in token-gated activites, NFTs, governance and other activities will provide users with a safe 
+
+## Demo
+Step 1
+![1_connect_wallet](https://github.com/aptos-hack/delegate-aptos/assets/34344542/aaec6bc0-c398-4c10-b6d8-a965a7289abd)
+
+
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+pnpm install && pnpm run build
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
