@@ -127,30 +127,31 @@ export default function ViewPage() {
                     </th>
                 </tr>
                 </thead>
-                {delegationInfo.map((delegate) => {
-                    return <tbody>
-                    <tr key={delegate.delegatation_hash}>
-                        <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
-                            <a href={blockExplorerUrl(delegate.vault)} target="_blank"
-                               className="text-blue-700">{truncateAddress(delegate.vault)}</a>
-                            <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
-                            <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
-                        </td>
-                        <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
-                            <a href={blockExplorerUrl(delegate.delegate)} target="_blank"
-                               className="text-blue-700">{truncateAddress(delegate.delegate)}</a>
-                            <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
-                            <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
-                        </td>
-                        <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
-                            <span>{getDelegationType(delegate.delegatation_type)}</span>
-                            <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
-                            <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                })
-                }
+                <tbody>
+                    {delegationInfo.map((delegate) => {
+                        return (
+                            <tr key={delegate.delegatation_hash}>
+                                <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
+                                    <a href={blockExplorerUrl(delegate.vault)} target="_blank"
+                                       className="text-blue-700">{truncateAddress(delegate.vault)}</a>
+                                    <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
+                                    <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
+                                </td>
+                                <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
+                                    <a href={blockExplorerUrl(delegate.delegate)} target="_blank"
+                                       className="text-blue-700">{truncateAddress(delegate.delegate)}</a>
+                                    <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
+                                    <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
+                                </td>
+                                <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
+                                    <span>{getDelegationType(delegate.delegatation_type)}</span>
+                                    <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100"/>
+                                    <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100"/>
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
             </table>}
 
             <br />
